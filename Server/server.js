@@ -3,19 +3,20 @@ const express = require('express')
 
 const app = express();
 const mongoose = require('mongoose')
-const PORT = process.env.PORT || 5000;
 
 const { logger } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const connectDB = require('./config/dbConn')
+const cors = require('cors')
 
+const PORT = process.env.PORT || 8000;
 //Mongoose middleware
 connectDB()
 
 //Logging Events
 app.use(logger)
 
-
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
