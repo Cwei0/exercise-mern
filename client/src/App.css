@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Code:300,regular,500,600,700);
+
+body {
+    font-family: 'Fira Code', sans-serif;
+    background: #f1f1f1;
+
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1aac83;
+    --error: #e7195a;
+}
+
+nav {
+    background: #fff;
+}
+
+nav .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+}
+
+.pages {
+    max-width: 1400px;
+    padding: 20px;
+    margin: 0 auto;
+}
