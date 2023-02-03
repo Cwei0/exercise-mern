@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 //Router
-app.use('/workout', require('./routers/workout'))
+app.use('/workout', require('./routes/workout'))
 
 app.all('/*', (req, res) => {
     res.status(404);
