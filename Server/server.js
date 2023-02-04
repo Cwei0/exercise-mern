@@ -19,7 +19,7 @@ connectDB()
 //Logging Events
 app.use(logger)
 
-// app.use(credentials) 
+app.use(credentials) 
 app.use(cors(CorsConfig))
 
 

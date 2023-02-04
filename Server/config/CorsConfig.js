@@ -5,6 +5,7 @@ const CorsConfig = {
     Credential: true,
     preflightContinue: false,
     methods: 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    allowedHeaders: ['X-Requested-With, Content-type', 'Origin', 'Accept'],
     optionsSuccessStatus: 204
 }
 
