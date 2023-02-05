@@ -118,3 +118,15 @@ div.error {
 input.error {
     border: 1px solid var(--error);
 }
+
+.icon {
+    width: 5%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background: #f1f1f1;
+    padding: 6px;
+    border-radius: 50%;
+    color: #333;
+}

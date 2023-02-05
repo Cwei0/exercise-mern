@@ -35,7 +35,7 @@ const getWorkout = async (req, res) => {
 const deleteWorkout = async (req, res) => {
     const { id } = req.params
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ error: 'ID is required' })
-    const workout = await workoutDb.findByIdAndDelete({ _id: id }).exec()
+    const workout = await workoutDb.findByIdAndDelete(id).exec()
     if (!workout) return res.status(400).json({ error: 'ID is required' })
     res.status(200).json(workout)
 }
