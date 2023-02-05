@@ -9,8 +9,6 @@ const errorHandler = require('./middleware/errorHandler')
 const connectDB = require('./config/dbConn')
 
 const cors = require('cors')
-const CorsConfig = require('./config/CorsConfig')
-const credentials = require('./middleware/credentials')
 
 const PORT = process.env.PORT || 8000;
 //Mongoose middleware
@@ -19,10 +17,7 @@ connectDB()
 //Logging Events
 app.use(logger)
 
-app.use(credentials) 
-app.use(cors(CorsConfig))
-
-
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 

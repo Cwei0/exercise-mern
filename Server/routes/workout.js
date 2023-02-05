@@ -12,4 +12,6 @@ router.route('/:id')
     .get(workoutControllers.getWorkout)
     .delete(workoutControllers.deleteWorkout)
     .patch(workoutControllers.updateWorkout)
+
 module.exports = router;
+

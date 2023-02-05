@@ -1,20 +1,19 @@
 const allowedOrigins = require('./allowedOrigins')
 
-const CorsConfig = {
+const CorsOptions = {
     origin: allowedOrigins,
-    Credential: true,
-    preflightContinue: false,
-    methods: 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-    allowedHeaders: ['X-Requested-With, Content-type', 'Origin', 'Accept'],
+    Credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
     optionsSuccessStatus: 204
 }
 
-module.exports = CorsConfig
+module.exports = CorsOptions
 // origin: (origin, callback) => {
 //     if(allowedOrigins.indexOf(origin) !== -1) {
 //         return callback(new Error('Not allowed by CORS'), false)
 //     }
 //     return callback(null, true)
 // },
-//MaxAge for caches, Authorization for the allowedHeaders
+//MaxAge for caches, Authorization for the allowedHeaders, preflightContinue
 //When using CORS config, the optionsSuccessStatus can be set to true or we just let the browser do that and set the options to 204, credentials:true is optional
