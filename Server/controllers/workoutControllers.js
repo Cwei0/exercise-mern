@@ -18,7 +18,7 @@ const createWorkout = async (req, res) => {
             "reps": reps
         })
         console.log(newWorkout)
-        res.status(200).json({ 'message': `New Progress created: ${title}` })
+        res.status(200).json(newWorkout)
     } catch (error) {
         res.status(400).json({ 'message': error.message })
     }
@@ -33,15 +33,16 @@ const getWorkout = async (req, res) => {
 }
 
 const deleteWorkout = async (req, res) => {
-    if (!req.body.id && !req.params.id) return res.status(404).type('txt').send('ID is required')
-    const workout = await workoutDb.findByIdAndDelete(req.params.id).exec()
-    if (!workout) return res.status(204).type('txt').send('no workout found')
+    const { id } = req.params
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({ error: 'ID is required' })
+    const workout = await workoutDb.findByIdAndDelete({ _id: id }).exec()
+    if (!workout) return res.status(400).json({ error: 'ID is required' })
     res.status(200).json(workout)
 }
- 
+
 const updateWorkout = async (req, res) => {
     const { id } = req.params
-    if(!id) return res.status(404).type('txt').send('ID is required')
+    if (!id) return res.status(404).type('txt').send('ID is required')
     const workout = await workoutDb.findByIdAndUpdate(id, {
         $set: {
             "title": req.body.title,
@@ -50,9 +51,9 @@ const updateWorkout = async (req, res) => {
         }
     })
 
-    if(!workout) res.status(400).json({ 'message': error.message })
+    if (!workout) res.status(400).json({ 'message': error.message })
     res.status(200).json(workout)
-    
+
 }
 
 module.exports = {
@@ -60,5 +61,5 @@ module.exports = {
     createWorkout,
     getWorkout,
     deleteWorkout,
-    updateWorkout 
+    updateWorkout
 }

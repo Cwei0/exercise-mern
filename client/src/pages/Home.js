@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
+import { useWkcontext } from "../hooks/useWkcontext";
 
 const Home = () => {
-
-    const [workout, setWorkout] = useState(null)
+    const {workouts, dispatch} = useWkcontext()
 
     useEffect(() => {
 
@@ -14,7 +14,7 @@ const Home = () => {
            
             try {
                 if(responce.ok) {
-                    setWorkout(data)
+                    dispatch({type: 'SET_WORKOUT', payload: data})
                     console.log('success')
                 }
             } catch (error) {
@@ -23,12 +23,14 @@ const Home = () => {
            
         }
         fetchWorkout()
+
+        //eslint-disable-next-line
     }, [])
     
 
     return (
         <div className="home">
-            {workout && workout.map((workout) => (
+            {workouts && workouts.map((workout) => (
                 <WorkoutDetails key={workout._id} data={workout}/>
             ))}
             <WorkoutForm />

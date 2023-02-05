@@ -1,7 +1,10 @@
 import * as yup from "yup"
 import {useForm} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
+import { useWkcontext } from "../hooks/useWkcontext";
+
 const WorkoutForm = () => {
+    const {dispatch} = useWkcontext()
 
     let schema = yup.object().shape({
         title: yup.string().required("What exercise are you doing?"),
@@ -25,6 +28,7 @@ const WorkoutForm = () => {
             errors(json.message)
         }
         if(response.ok){
+            dispatch({type:'CREATE_WORKOUT', payload: json})
             reset(data)
             console.log('New Workout added successfully', json)
         }

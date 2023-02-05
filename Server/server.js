@@ -17,7 +17,10 @@ connectDB()
 //Logging Events
 app.use(logger)
 
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
